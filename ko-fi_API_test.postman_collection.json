@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "8f330d83-b650-4bef-9aa3-39196dc8fed7",
+		"name": "Ko-fi API test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ko-fi webhook test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9878f5bc-6842-48ca-9ad1-558b9c7369ab",
+						"exec": [
+							"// Was the POST successful or not?",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"// Placeholder tests for more detailed API responses - modify/delete as required",
+							"pm.test(\"Response success\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"success\");",
+							"});",
+							"pm.test(\"Response Message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Inserted payment data\");",
+							"});",
+							"// Placeholder tests for more detailed API responses in a 'data' dict - modify/delete as required",
+							"pm.test(\"Data date\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.payment_date).to.eql(\"2017-08-21T13:04:30.7296166Z\");",
+							"});",
+							"pm.test(\"Data payment type\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.donation_type).to.eql(\"Donation\");",
+							"});",
+							"pm.test(\"Data name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.name).to.eql(\"Ko-fi Team\");",
+							"});",
+							"pm.test(\"Data amount\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.amount).to.eql(\"3.00\");",
+							"});",
+							"pm.test(\"Data message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.message).to.eql(\"Good luck with the integration!\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8beeca09-8154-4aa3-913d-321e0a94e740",
+						"exec": [
+							"pm.variables.set(\"postData\", '{\"message_id\":\"3a1fac0c-f960-4506-a60e-824979a74e74\",\"timestamp\":\"2017-08-21T13:04:30.7296166Z\",\"type\":\"Donation\",\"from_name\":\"Ko-fi Team\",\"message\":\"Good luck with the integration!\",\"amount\":\"3.00\",\"is_public\":\"false\",\"url\":\"https://ko-fi.com\"}');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://your.webhook.net:5000?data={{postData}}",
+					"protocol": "https",
+					"host": [
+						"your",
+						"webhook",
+						"net"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1.0",
+						"payments"
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "{{postData}}",
+							"description": "Note: does not test 'is_public'"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Checks API endpoints written to accept Ko-fi's payment API webhook per:\nhttps://ko-fi.com/manage/webhooks#\n\nIncludes minimum tests plus placeholder tests for users to modify or delete as required."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
