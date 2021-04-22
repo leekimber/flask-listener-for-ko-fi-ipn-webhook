@@ -2,7 +2,7 @@ title: readme.md
 
 date: 2020-12-02 18:43
 
-modified: Thu 22 Apr 2021 18:29:41 BST
+modified: Thu 22 Apr 2021 18:33:38 BST
 
 tags: 
 
@@ -19,5 +19,10 @@ They are, however, full of inspection code and console statements to help examin
 - functions.py: Contains a very full request processing function (process_submission()), a mongodb connection function (mongodb_conn()) and a get_payments_data() function to add payment from the Ko-fi IPN webhook to a database.
 
 - config.py: Contains configuration data used by both scripts.
+
+- ko-fi_API_test.postman_collection.json: postman test for this API
+
+Postman test is documented at:
+https://12voltfarm.com/postman-test-for-ko-fi-webhook.html
 
 
